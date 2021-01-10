@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title%} About Us{% endblock %}
+
+{% block body %}
+<main role="main">
+    {% load static %}
+    <!-- Main carousel for a primary marketing message or call to action -->
+    <div id="carouselSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src='{% static "shop/Choosegoodwill.jpg" %}' class="d-block w-100" height="327px" alt="loading...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Welcome to BonneVolonte</h5>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src='{% static "shop/Choosegoodwill.jpg" %}' class="d-block w-100" height="327px" alt="loading...">
+            </div>
+            <div class="carousel-item">
+                <img src='{% static "shop/Choosegoodwill.jpg" %}' class="d-block w-100" height="327px" alt="loading...">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
+                    mollis euismod. Donec sed odio dui. </p>
+                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
+                    mollis euismod. Donec sed odio dui. </p>
+                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+</main>
+
+{% endblock %}
