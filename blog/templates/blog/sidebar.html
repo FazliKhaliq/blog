@@ -1,0 +1,38 @@
+<aside class="col-md-4 blog-sidebar float-right">
+    <!-- Widget [Latest Posts Widget]   -->
+    <div class="widget latest-posts">
+        <header>
+            <h3 class="h6">Latest Posts</h3>
+        </header>
+        <div class="p-3 mb-3 bg-light rounded">
+            {% for post in latest %}
+            <a href="{{ post.get_absolute_url }}">
+                <div class="item align-items-center">
+                    <div class="img-fluid">
+                        <img src="{{ post.thumbnail.url }}" alt="..." class="img-fluid"
+                            style="width: auto; height: 50px;">
+                    </div>
+                    <div class="title my-2">
+                        <strong>{{ post.title }}</strong>
+                        <div class="align-items-center">
+                            <div class="views"><i class="icon-eye"></i> {{ post.view_count }}</div>
+                            <div class="comments"><i class="icon-comment"></i>{{ post.comment_count }}</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <!-- Widget [Categories Widget]-->
+        <div class="widget categories my-3">
+            <header>
+                <h3 class="h6">Categories</h3>
+            </header>
+            {% for cat in category_count %}
+            <div class="item d-flex justify-content-between">
+                <a href="#">{{ cat.title }}</a><span>{{ cat.count }}</span>
+            </div>
+            {% endfor %}
+        </div>
+</aside>
+<!-- /.blog-sidebar -->

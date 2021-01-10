@@ -1,0 +1,88 @@
+{% extends 'blog/basic.html' %}
+
+{% block title %} Blog Posts {% endblock %}
+{% load static %}
+{% block body %}
+
+<div class="container">
+    <main class="container">
+        <div class="container">
+            <div class="row my-2">
+                <!-- post -->
+                {% for post in queryset %}
+                <div class="p-4 col-md-8 blog-main">
+                    <div class="post-thumbnail "><a href="{{ post.get_absolute_url }}">
+                            <img src="{{ post.thumbnail.url }}" alt="responsive image" class=".img-* img-fluid"
+                                style="width: auto; height: 150px;"></a></div>
+                    <div class="post-details">
+                        <div class="b-4 mb-4 font-italic border-bottom">
+                            {% comment %} <div class="date meta-last">20 May | 2016</div> {% endcomment %}
+                            <div class="category">
+                                <a href="{{ post.get_absolute_url }}">
+                                    <h3 class="h4">{{ post.title }}</h3>
+                                </a>
+                                {% for cat in post.categories.all %}
+                                <a href="#">{{ cat }}</a>
+                                {% endfor %}
+                                <p class="text-muted">{{ post.content|safe |linebreaks|truncatechars:100 }}</p>
+                            </div>
+                            <footer class="post-footer align-items-center">
+                                <a href="#" class="author align-items-center">
+                                    <div class=".img-*">
+                                        <picture>
+                                            <img src="{{ post.author.profile_picture.url }}" alt="..."
+                                                class=".img-* img-fluid" style="width: 10; height: 50px">
+                                        </picture>
+                                    </div>
+                                    <div class="title"><span>{{ post.author.user.username }}</span></div>
+                                </a>
+                                <div class="date"><i class="icon-clock"></i>{{ post.created_on|timesince }}</div>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- Divider Section-->
+                <hr class="featurette-divider">
+                {% include 'blog/sidebar.html' with latest=latest category_count=category_count %}
+                <!-- Featured Posts -->
+                <section class="latest-posts no-padding-top">
+                    <div class="container">
+                        <header>
+                            <h2>Featured blog posts</h2>
+                            <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </header>
+                        <div class="row mx-2">
+                            {% for post in featured %}
+                            <div class="p-4 card col-12 col-md-4 col-lg-3">
+                                <div class="img-fluid"><a href="#"><img src="{{ post.thumbnail.url }}" alt="img-fluid"
+                                            class=".img-*" style="width: auto; height: 145px;"></a></div>
+                                <div class="post-details">
+                                    <div class="post-meta d-flex justify-content-between">
+                                        <div class="date">{{ post.created_on|timesince }}</div>
+                                        <div class="category">
+                                            {% for cat in post.categories.all %}
+                                            <a href="#">{{ cat }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </div><a href="{{ post.get_absolute_url }}">
+                                        <h2 class="h4">{{ post.title }}</h2>
+                                    </a>
+                                    <p class="text-muted">{{ post.content|safe | linebreaks | truncatechars:100 }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                    </div>
+                    <hr class="featurette-divider">
+                    {% include 'blog/pagination.html' with page=posts %}
+                </section>
+                
+            </div>
+        </div>
+</div>
+</main>
+</div>
+
+{% endblock %}
